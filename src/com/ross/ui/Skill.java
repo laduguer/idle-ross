@@ -1,11 +1,14 @@
 package com.ross.ui;
 
+import com.ross.domain.player.Player;
+import com.ross.domain.woodcutting.ChoppingTrees;
+import com.ross.game.Game;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Skill extends JPanel {
 
-    private int level;
 
     private JButton levelIncreaseButton;
 
@@ -14,7 +17,7 @@ public class Skill extends JPanel {
     private DrawingArea canvas;
 
 
-    public Skill(String name) {
+    public Skill(String name, Game game) {
 
         setLayout(new GridLayout(1, 2, 5, 5));
         setName(name);
@@ -23,19 +26,30 @@ public class Skill extends JPanel {
         canvas.setVisible(true);
         add(canvas);
 
-        level = 0;
-
         levelIncreaseButton = createButton();
         add(levelIncreaseButton);
+        add(createSetAsActivityButton(game));
+
+    }
+
+    private JButton createSetAsActivityButton(Game game) {
+        JButton button = new JButton("Select " + getName());
+        button.addActionListener(e -> {
+            game.setCurrentActivity(new ChoppingTrees()); //dit couplet alles wel heel tight... eens zien hoe communicatie tussen model en UI beter kan
+            updateUI();
+        });
+        button.setVisible(true);
+        return button;
     }
 
     void increase() {
-        this.level++;
-        System.out.println(getName() + " increased, new level is " + level);
+        Player.addWoodcuttExp(1000);
+
+        System.out.println(getName() + " increased, new level is " + Player.woodcuttingLevel());
     }
 
     private JButton createButton() {
-        JButton button = new JButton("Increase " + getName());
+        JButton button = new JButton("Increase " + getName() + "(actualy woodcutting)");
         button.addActionListener(e -> {
             increase();
             updateUI();
@@ -71,7 +85,7 @@ public class Skill extends JPanel {
 
         private void drawLevel(int x, int y, Graphics2D g2d) {
             g2d.setFont(HELVETICA_25);
-            g2d.drawString(String.valueOf(level), x, y);
+            g2d.drawString(String.valueOf(Player.woodcuttingLevel()), x, y);
         }
 
         @Override
