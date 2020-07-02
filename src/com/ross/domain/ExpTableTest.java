@@ -27,4 +27,15 @@ public class ExpTableTest {
     }
 
 
+    @Test
+    public void beginAt0Exp(){
+        Assert.assertEquals(0, ExpTable.expAt(1));
+    }
+
+
+    @Test
+    public void lvl2Is83EXP(){
+        Assert.assertEquals(83, ExpTable.expAt(2));
+    }
+
 }

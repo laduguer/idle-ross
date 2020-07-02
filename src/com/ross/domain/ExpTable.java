@@ -119,5 +119,7 @@ public class ExpTable {
     }
 
 
-
+    public static int expAt(int level) {
+        return lvlUpExps.get(level -1);
+    }
 }

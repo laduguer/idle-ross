@@ -10,8 +10,6 @@ import java.awt.*;
 public class Skill extends JPanel {
 
 
-    private JButton levelIncreaseButton;
-
     public static final Font HELVETICA_14 = new Font("Helvetica", Font.PLAIN, 14);
     public static final Font HELVETICA_25 = new Font("Helvetica", Font.PLAIN, 25);
     private DrawingArea canvas;
@@ -26,14 +24,12 @@ public class Skill extends JPanel {
         canvas.setVisible(true);
         add(canvas);
 
-        levelIncreaseButton = createButton();
-        add(levelIncreaseButton);
         add(createSetAsActivityButton(game));
 
     }
 
     private JButton createSetAsActivityButton(Game game) {
-        JButton button = new JButton("Select " + getName());
+        JButton button = new JButton("Train " + getName() + "(actually chop trees) ");
         button.addActionListener(e -> {
             game.setCurrentActivity(new ChoppingTrees()); //dit couplet alles wel heel tight... eens zien hoe communicatie tussen model en UI beter kan
             updateUI();
@@ -42,21 +38,6 @@ public class Skill extends JPanel {
         return button;
     }
 
-    void increase() {
-        Player.addWoodcuttExp(1000);
-
-        System.out.println(getName() + " increased, new level is " + Player.woodcuttingLevel());
-    }
-
-    private JButton createButton() {
-        JButton button = new JButton("Increase " + getName() + "(actualy woodcutting)");
-        button.addActionListener(e -> {
-            increase();
-            updateUI();
-        });
-        button.setVisible(true);
-        return button;
-    }
 
     public class DrawingArea extends JPanel {
 
@@ -68,14 +49,17 @@ public class Skill extends JPanel {
 
         void draw(Graphics g) {
             Graphics2D g2d = (Graphics2D) g;
-
+            int assumeMaxWidthIs = 400;
+            int width = (int) (assumeMaxWidthIs * Player.woodcuttPercentageToNextLvl());
+            g2d.setColor(Color.GREEN);
+            g2d.fillRect(0, 0, width, 50);
             RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-
             g2d.setRenderingHints(rh);
+            g2d.setColor(Color.BLACK);
 
-            drawLabel(getX() + 5, getHeight()/2 + HELVETICA_14.getSize()/2, g2d);
-            drawLevel(getWidth() - 50, getHeight()/2 + HELVETICA_25.getSize()/2, g2d);
+            drawLabel(getX() + 5, getHeight() / 2 + HELVETICA_14.getSize() / 2, g2d);
+            drawLevel(getWidth() - 50, getHeight() / 2 + HELVETICA_25.getSize() / 2, g2d);
         }
 
         private void drawLabel(int x, int y, Graphics2D g2d) {

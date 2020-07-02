@@ -15,4 +15,16 @@ public class Player {
     public static void addWoodcuttExp(int exp) {
         wcExp += exp;
     }
+
+    public static double woodcuttPercentageToNextLvl() {
+        int currentLvl = ExpTable.lvlAt(wcExp);
+        int startExpOfLvl = ExpTable.expAt(currentLvl);
+        int startExpOfNextLvl = ExpTable.expAt(currentLvl+1);
+
+        int diff = startExpOfNextLvl - startExpOfLvl;
+        int progress = wcExp - startExpOfLvl;
+        return ((double)progress) / (double)diff;
+
+
+    }
 }
