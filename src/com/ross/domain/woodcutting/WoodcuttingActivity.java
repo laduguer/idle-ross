@@ -14,8 +14,10 @@ public abstract class WoodcuttingActivity implements Activity {
 
     @Override
     public void applyProgress(Player player) {
-        Player.addWoodcuttExp(40);
+        Player.addWoodcuttExp(expPerTick());
     }
+
+    protected abstract int expPerTick();
 
     protected abstract int levelRequired();
 }

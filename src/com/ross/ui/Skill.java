@@ -24,19 +24,10 @@ public class Skill extends JPanel {
         canvas.setVisible(true);
         add(canvas);
 
-        add(createSetAsActivityButton(game));
 
     }
 
-    private JButton createSetAsActivityButton(Game game) {
-        JButton button = new JButton("Train " + getName() + "(actually chop trees) ");
-        button.addActionListener(e -> {
-            game.setCurrentActivity(new ChoppingTrees()); //dit couplet alles wel heel tight... eens zien hoe communicatie tussen model en UI beter kan
-            updateUI();
-        });
-        button.setVisible(true);
-        return button;
-    }
+
 
 
     public class DrawingArea extends JPanel {
