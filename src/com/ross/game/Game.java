@@ -23,6 +23,11 @@ public class Game {
     }
 
     public void setCurrentActivity(Activity activity) {
-        currentActivity = activity;
+        if(activity.playerHasRequirements()) {
+            currentActivity = activity;
+        }else{
+            System.out.println("pipo, uw level is ni hoog genoeg om da te doen");
+            //TODO event smijten dat een notificatieke op scherm brengt ofzo?
+        }
     }
 }

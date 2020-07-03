@@ -1,14 +1,14 @@
 package com.ross.domain.woodcutting;
 
-public class ChoppingTrees extends WoodcuttingActivity {
+public class ChopOakTrees extends WoodcuttingActivity {
     @Override
     protected int expPerTick() {
-        return 14;
+        return 50;
     }
 
     @Override
     protected int levelRequired() {
-        return 0;
+        return 15;
     }
 
 }
