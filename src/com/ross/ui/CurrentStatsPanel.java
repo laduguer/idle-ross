@@ -1,7 +1,6 @@
 package com.ross.ui;
 
 import com.ross.game.Game;
-import com.sun.deploy.jardiff.JarDiffPatcher;
 
 import javax.swing.*;
 import java.awt.*;

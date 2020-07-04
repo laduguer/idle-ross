@@ -13,10 +13,11 @@ public class Scene extends JPanel {
 
     public Scene(Game game) {
 
-        setLayout(new GridLayout(1,2));
+        setLayout(new BorderLayout(2,2));
 
-       add(new CurrentStatsPanel(game));
-       add(new ActivitySelectorPanel(game));
+       add(new CurrentStatsPanel(game), BorderLayout.CENTER);
+   add(new ActivitySelectorPanel(game), BorderLayout.EAST);
+       add(new InfoPanel(game.infoHolder()), BorderLayout.SOUTH);
     }
 
 }
