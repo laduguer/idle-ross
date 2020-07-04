@@ -22,7 +22,7 @@ public class Application extends JFrame {
     }
 
     private void initAdminUI(Game game) {
-        new AdminFrame(game, tickSleep).init();
+        new AdminFrame(this, game, tickSleep).init();
     }
 
     private Game initGame() {

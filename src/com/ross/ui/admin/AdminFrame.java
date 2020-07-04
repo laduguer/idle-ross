@@ -8,11 +8,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class AdminFrame extends JFrame {
+public class AdminFrame extends JDialog {
     private Game game;
     private AtomicBoolean tickSleep;
 
-    public AdminFrame(Game game, AtomicBoolean tickSleep) {
+    public AdminFrame(JFrame parent, Game game, AtomicBoolean tickSleep) {
+        super(parent);
         this.game = game;
         this.tickSleep = tickSleep;
     }
@@ -20,13 +21,11 @@ public class AdminFrame extends JFrame {
     public void init() {
         setMinimumSize(new Dimension(200, 300));
         setTitle("ROSS- Admint");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
         add(new AdminPanel(game, tickSleep));
-
-setAlwaysOnTop(true);
 
         setVisible(true);
         pack();
