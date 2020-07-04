@@ -2,6 +2,7 @@ package com.ross.domain.woodcutting;
 
 import com.ross.domain.Activity;
 import com.ross.domain.player.Player;
+import com.ross.game.ItemId;
 
 public abstract class WoodcuttingActivity implements Activity {
 
@@ -14,7 +15,8 @@ public abstract class WoodcuttingActivity implements Activity {
 
     @Override
     public void applyProgress(Player player) {
-        Player.addWoodcuttExp(expPerTick());
+        player.addWoodcuttExp(expPerTick());
+        player.addItem(ItemId.NORMAL_LOGS);
     }
 
     protected abstract int expPerTick();
