@@ -4,7 +4,6 @@ import com.ross.game.Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Scene extends JPanel {
@@ -12,12 +11,18 @@ public class Scene extends JPanel {
     private List<Skill> skills;
 
     public Scene(Game game) {
+        setLayout(new BorderLayout(2, 2));
 
-        setLayout(new BorderLayout(2,2));
 
-       add(new CurrentStatsPanel(game), BorderLayout.CENTER);
-   add(new ActivitySelectorPanel(game), BorderLayout.EAST);
-       add(new InfoPanel(game.infoHolder()), BorderLayout.SOUTH);
+        add(new CurrentStatsPanel(game), BorderLayout.CENTER);
+        add(new ActivitySelectorPanel(game), BorderLayout.EAST);
+
+        JPanel bottom = new JPanel();
+        bottom.setLayout(new BorderLayout(2, 2));
+        bottom.add(new InfoPanel(game.infoHolder()), BorderLayout.CENTER);
+        bottom.add(new InventoryPanel(game.inventory()), BorderLayout.EAST);
+
+        add(bottom, BorderLayout.SOUTH);
     }
 
 }

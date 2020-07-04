@@ -3,6 +3,7 @@ package com.ross.game;
 import com.ross.domain.Activity;
 import com.ross.domain.player.Player;
 import com.ross.domain.woodcutting.ChoppingTrees;
+import com.ross.ui.InventoryPanel;
 
 public class Game {
 
@@ -17,6 +18,9 @@ public class Game {
         infoHolder = new InfoHolder();
     }
 
+    public void addItem(ItemId item, int amount){
+        player.addItem(item, amount);
+    }
 
     public void tick() {
         infoHolder.tick();
@@ -36,5 +40,9 @@ public class Game {
 
     public InfoHolder infoHolder() {
         return infoHolder;
+    }
+
+    public Inventory inventory() {
+        return player.inventory();
     }
 }

@@ -1,18 +1,28 @@
 package com.ross;
 
 import com.ross.game.Game;
+import com.ross.ui.admin.AdminFrame;
 import com.ross.ui.Scene;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Application extends JFrame {
 
-   private Game game;
+    private static Thread tickThread;
+    private Game game;
+    private static AtomicBoolean tickSleep = new AtomicBoolean(true);
+
     public Application() {
 
         game = initGame();
         initUI(game);
+        initAdminUI(game);
+    }
+
+    private void initAdminUI(Game game) {
+        new AdminFrame(game, tickSleep).init();
     }
 
     private Game initGame() {
@@ -23,7 +33,7 @@ public class Application extends JFrame {
     private void tickGame() {
         game.tick();
         EventQueue.invokeLater(() -> {
-           repaint();
+            repaint();
         });
     }
 
@@ -39,16 +49,20 @@ public class Application extends JFrame {
         EventQueue.invokeLater(() -> {
             Application ex = new Application();
             ex.setVisible(true);
-            new Thread(() -> {
+            tickThread = new Thread(() -> {
                 while (true) {
-                    try {
-                        Thread.sleep(600);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    if (tickSleep.get()) {
+                        try {
+                            Thread.sleep(600);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+
                     ex.tickGame();
                 }
-            }).start();
+            });
+            tickThread.start();
         });
     }
 

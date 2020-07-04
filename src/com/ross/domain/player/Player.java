@@ -1,18 +1,25 @@
 package com.ross.domain.player;
 
 import com.ross.domain.ExpTable;
+import com.ross.game.Inventory;
+import com.ross.game.ItemId;
 
 public class Player {
 
     private static int wcExp = 0;
+    private Inventory inventory;
 
+
+    public Player() {
+        this.inventory = Inventory.withStartingItems();
+    }
 
     public static int woodcuttingLevel() {
         return ExpTable.lvlAt(wcExp);
 
     }
 
-    public static void addWoodcuttExp(int exp) {
+    public void addWoodcuttExp(int exp) {
         wcExp += exp;
     }
 
@@ -26,5 +33,17 @@ public class Player {
         return ((double)progress) / (double)diff;
 
 
+    }
+
+    public void addItem(ItemId item) {
+        this.addItem(item, 1);
+    }
+
+    public Inventory inventory() {
+        return inventory;
+    }
+
+    public void addItem(ItemId item, int amount) {
+        inventory.addItems(item, amount);
     }
 }
