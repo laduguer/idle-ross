@@ -42,7 +42,7 @@ public class Skill extends JPanel {
             Graphics2D g2d = (Graphics2D) g;
             int assumeMaxWidthIs = 400;
             int width = (int) (assumeMaxWidthIs * Player.woodcuttPercentageToNextLvl());
-            g2d.setColor(Color.GREEN);
+            g2d.setColor(Color.ORANGE);
             g2d.fillRect(0, 0, width, 50);
             RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
