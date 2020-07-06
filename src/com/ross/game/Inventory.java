@@ -21,13 +21,13 @@ public class Inventory {
     }
 
     public void addItems(ItemId item, int count) {
-        find(item)
-                .ifPresentOrElse(
-                        ii -> ii.plusAmount(count),
-                        () -> {
-                            items.add(new InventoryItem(count, item));
-                        }
-                );
+        Optional<InventoryItem> inventoryItem = find(item);
+        if(inventoryItem.isPresent()){
+            inventoryItem.get().plusAmount(count);
+        }else{
+            items.add(new InventoryItem(count, item));
+
+        }
         notifyListener();
     }
 

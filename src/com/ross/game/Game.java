@@ -2,8 +2,6 @@ package com.ross.game;
 
 import com.ross.domain.Activity;
 import com.ross.domain.player.Player;
-import com.ross.domain.woodcutting.ChoppingTrees;
-import com.ross.ui.InventoryPanel;
 
 public class Game {
 

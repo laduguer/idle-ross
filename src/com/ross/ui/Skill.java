@@ -1,13 +1,14 @@
 package com.ross.ui;
 
 import com.ross.domain.player.Player;
-import com.ross.domain.woodcutting.ChoppingTrees;
 import com.ross.game.Game;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Skill extends JPanel {
+
+    private static int currentSkillXp = 0;
 
 
     public static final Font HELVETICA_14 = new Font("Helvetica", Font.PLAIN, 14);
@@ -27,6 +28,14 @@ public class Skill extends JPanel {
 
     }
 
+    public void setCurrentSkillXp(int xp){
+        currentSkillXp = xp;
+    }
+
+    public int getCurrentSkillXp(){
+        return currentSkillXp;
+    }
+
 
 
 
@@ -40,8 +49,14 @@ public class Skill extends JPanel {
 
         void draw(Graphics g) {
             Graphics2D g2d = (Graphics2D) g;
-            int assumeMaxWidthIs = 400;
-            int width = (int) (assumeMaxWidthIs * Player.woodcuttPercentageToNextLvl());
+
+            int assumeMaxWidthIs = this.getWidth() - 50;
+
+            int width = 0;
+
+                width = (int) (assumeMaxWidthIs * Player.percentageToNextLvl(getName().toLowerCase()));
+
+
             g2d.setColor(Color.ORANGE);
             g2d.fillRect(0, 0, width, 50);
             RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -60,7 +75,7 @@ public class Skill extends JPanel {
 
         private void drawLevel(int x, int y, Graphics2D g2d) {
             g2d.setFont(HELVETICA_25);
-            g2d.drawString(String.valueOf(Player.woodcuttingLevel()), x, y);
+                g2d.drawString(String.valueOf(Player.getLevel(getName().toLowerCase())), x, y);
         }
 
         @Override
