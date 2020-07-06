@@ -2,26 +2,29 @@ package com.ross.ui;
 
 import com.ross.domain.player.Player;
 import com.ross.game.Game;
+import com.ross.game.Skills;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Skill extends JPanel {
+public class SkillPanel extends JPanel {
 
     private static int currentSkillXp = 0;
 
 
     public static final Font HELVETICA_14 = new Font("Helvetica", Font.PLAIN, 14);
     public static final Font HELVETICA_25 = new Font("Helvetica", Font.PLAIN, 25);
+    private final Skills skill;
     private DrawingArea canvas;
 
 
-    public Skill(String name, Game game) {
+    public SkillPanel(Skills skill, Game game) {
+        this.skill = skill;
 
         setLayout(new GridLayout(1, 2, 5, 5));
-        setName(name);
 
-        canvas = new DrawingArea(name);
+
+        canvas = new DrawingArea(skill);
         canvas.setVisible(true);
         add(canvas);
 
@@ -41,8 +44,8 @@ public class Skill extends JPanel {
 
     public class DrawingArea extends JPanel {
 
-        public DrawingArea(String name) {
-            setName(name);
+        public DrawingArea(Skills skill) {
+
             setLayout(new GridLayout(1, 1, 0, 0));
             repaint();
         }
@@ -54,7 +57,7 @@ public class Skill extends JPanel {
 
             int width = 0;
 
-                width = (int) (assumeMaxWidthIs * Player.percentageToNextLvl(getName().toLowerCase()));
+                width = (int) (assumeMaxWidthIs * Player.percentageToNextLvl(skill));
 
 
             g2d.setColor(Color.ORANGE);
@@ -70,12 +73,12 @@ public class Skill extends JPanel {
 
         private void drawLabel(int x, int y, Graphics2D g2d) {
             g2d.setFont(HELVETICA_14);
-            g2d.drawString(getName(), x, y);
+            g2d.drawString(skill.name(), x, y);
         }
 
         private void drawLevel(int x, int y, Graphics2D g2d) {
             g2d.setFont(HELVETICA_25);
-                g2d.drawString(String.valueOf(Player.getLevel(getName().toLowerCase())), x, y);
+                g2d.drawString(String.valueOf(Player.getLevel(skill)), x, y);
         }
 
         @Override

@@ -3,51 +3,37 @@ package com.ross.domain.player;
 import com.ross.domain.ExpTable;
 import com.ross.game.Inventory;
 import com.ross.game.ItemId;
-import com.ross.ui.Skill;
+import com.ross.game.Skills;
 
 import java.util.HashMap;
 
 public class Player {
 
-    static HashMap<String,String> skillTable = new HashMap<>();
+    static HashMap<Skills,Integer> skillTable = new HashMap<>();
 
     private Inventory inventory;
 
 
     public Player() {
         this.inventory = Inventory.withStartingItems();
-        skillTable.put("woodcutting", "0");
-        skillTable.put("mining", "0");
-        skillTable.put("fishing", "0");
-        skillTable.put("attack", "0");
-        skillTable.put("strength", "0");
-        skillTable.put("defence", "0");
-        skillTable.put("ranged", "0");
-        skillTable.put("prayer", "0");
-        skillTable.put("magic", "0");
-        skillTable.put("constitution", "0");
-        skillTable.put("crafting", "0");
-        skillTable.put("smithing", "0");
-        skillTable.put("cooking", "0");
-        skillTable.put("firemaking", "0");
-        skillTable.put("runecrafting", "0");
-        skillTable.put("dungeoneering", "0");
-        skillTable.put("fletching", "0");
 
+        for (Skills skill: Skills.values()) {
+            skillTable.put(skill, 0);
+        }
     }
 
-    public static int getLevel(String skillName) {
-        return ExpTable.lvlAt(Integer.parseInt(skillTable.get(skillName)));
+    public static int getLevel(Skills skill) {
+        return ExpTable.lvlAt(skillTable.get(skill));
     }
 
-    public void addExp(int exp, String skillName) {
-        skillTable.put(skillName, String.valueOf((Integer.parseInt(skillTable.get(skillName))) + exp));
+    public void addExp(int exp, Skills skill) {
+        skillTable.put(skill, ((skillTable.get(skill))+ exp));
     }
 
-    public static double percentageToNextLvl(String skillName) {
+    public static double percentageToNextLvl(Skills skill) {
 
-        int currentLvl = ExpTable.lvlAt(Integer.parseInt(skillTable.get(skillName)));
-        int skillExp = Integer.parseInt(skillTable.get(skillName));
+        int currentLvl = ExpTable.lvlAt(skillTable.get(skill));
+        int skillExp = skillTable.get(skill);
         int startExpOfLvl = ExpTable.expAt(currentLvl);
         int startExpOfNextLvl = ExpTable.expAt(currentLvl+1);
 
