@@ -15,6 +15,7 @@
     </properties>
 
     <build>
+        <finalName>idle-ross</finalName>
         <plugins>
             <plugin>
                 <!-- Build an executable JAR -->
