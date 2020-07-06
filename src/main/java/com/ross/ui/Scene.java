@@ -11,9 +11,10 @@ public class Scene extends JPanel {
     public Scene(Game game) {
         setLayout(new BorderLayout(2, 2));
 
-
-        add(new CurrentStatsPanel(), BorderLayout.CENTER);
-        add(new ActivitySelectorPanel(game), BorderLayout.EAST);
+        JTabbedPane jTabbedPane = new JTabbedPane();
+        jTabbedPane.addTab("Skills", new SkillTabContentPanel(game));
+        jTabbedPane.addTab("Quests", new QuestTabContentPanel(game));
+        add(jTabbedPane, BorderLayout.CENTER);
 
         JPanel bottom = new JPanel();
         bottom.setLayout(new BorderLayout(2, 2));

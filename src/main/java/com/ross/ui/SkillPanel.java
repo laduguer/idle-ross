@@ -12,10 +12,12 @@ public class SkillPanel extends JPanel {
     public static final Font HELVETICA_14 = new Font("Helvetica", Font.PLAIN, 14);
     public static final Font HELVETICA_25 = new Font("Helvetica", Font.PLAIN, 25);
     private final Skill skill;
+    private Player player;
 
 
-    public SkillPanel(Skill skill) {
+    public SkillPanel(Skill skill, Player player) {
         this.skill = skill;
+        this.player = player;
 
         setLayout(new GridLayout(1, 2, 5, 5));
 
@@ -62,7 +64,7 @@ public class SkillPanel extends JPanel {
 
         private void drawLevel(int x, int y, Graphics2D g2d) {
             g2d.setFont(HELVETICA_25);
-                g2d.drawString(String.valueOf(Player.getLevel(skill)), x, y);
+                g2d.drawString(String.valueOf(player.getLevel(skill)), x, y);
         }
 
         @Override
