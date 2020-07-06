@@ -1,6 +1,6 @@
 # Idle ROSS
 
-![Master build status](https://github.com/laduguer/idle-ross/workflows/ci/badge.svg?branch=master)
+![CI](https://github.com/laduguer/idle-ross/workflows/CI/badge.svg?branch=master)
 
 ## Running
 
