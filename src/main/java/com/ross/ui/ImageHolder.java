@@ -15,6 +15,6 @@ public class ImageHolder {
     }
 
     private static URL getResource(String name) {
-        return ImageHolder.class.getClassLoader().getResource("resources/icons/" + name + ".png");
+        return ImageHolder.class.getClassLoader().getResource("icons/" + name + ".png");
     }
 }
