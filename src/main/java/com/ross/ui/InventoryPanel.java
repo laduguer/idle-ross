@@ -12,8 +12,8 @@ import java.util.List;
 
 public class InventoryPanel extends JScrollPane implements GenericUpdateListener {
 
-    private Inventory inventory;
-    private JPanel panel = new JPanel();
+    private final Inventory inventory;
+    private final JPanel panel = new JPanel();
 
 
     public InventoryPanel(Inventory inventory) {
