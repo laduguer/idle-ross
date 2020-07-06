@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ExpTable {
 
-    private static List<Integer> lvlUpExps;
+    private static final List<Integer> lvlUpExps;
 
     static {
         lvlUpExps = new ArrayList<>();

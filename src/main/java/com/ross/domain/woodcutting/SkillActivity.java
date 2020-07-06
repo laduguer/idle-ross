@@ -3,17 +3,17 @@ package com.ross.domain.woodcutting;
 import com.ross.domain.Activity;
 import com.ross.domain.player.Player;
 import com.ross.game.ItemId;
-import com.ross.game.Skills;
+import com.ross.game.Skill;
 
 public class SkillActivity implements Activity {
 
-    private Skills currentSkill;
-    private int expEach;
-    private int requiredLvl;
-    private ItemId itemId;
+    private final Skill currentSkill;
+    private final int expEach;
+    private final int requiredLvl;
+    private final ItemId itemId;
 
 
-    public SkillActivity(Skills currentSkill, int expEach, int requiredLvl, ItemId itemId){
+    public SkillActivity(Skill currentSkill, int expEach, int requiredLvl, ItemId itemId){
         this.currentSkill = currentSkill;
         this.expEach = expEach;
         this.requiredLvl = requiredLvl;

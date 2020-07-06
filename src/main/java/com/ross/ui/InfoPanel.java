@@ -1,6 +1,5 @@
 package com.ross.ui;
 
-import com.ross.game.Game;
 import com.ross.game.GenericUpdateListener;
 import com.ross.game.InfoHolder;
 import com.ross.viewmodel.FadingInfoMessageViewModel;
@@ -13,8 +12,8 @@ import java.util.stream.IntStream;
 
 public class InfoPanel extends JPanel implements GenericUpdateListener {
 
-    private List<JTextField> infoLines;
-    private InfoHolder infoHolder;
+    private final List<JTextField> infoLines;
+    private final InfoHolder infoHolder;
 
 
     public InfoPanel(InfoHolder infoHolder) {

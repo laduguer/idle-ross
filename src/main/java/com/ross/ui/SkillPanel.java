@@ -2,50 +2,34 @@ package com.ross.ui;
 
 import com.ross.domain.player.Player;
 import com.ross.game.Game;
-import com.ross.game.Skills;
+import com.ross.game.Skill;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class SkillPanel extends JPanel {
 
-    private static int currentSkillXp = 0;
-
-
     public static final Font HELVETICA_14 = new Font("Helvetica", Font.PLAIN, 14);
     public static final Font HELVETICA_25 = new Font("Helvetica", Font.PLAIN, 25);
-    private final Skills skill;
-    private DrawingArea canvas;
+    private final Skill skill;
 
 
-    public SkillPanel(Skills skill, Game game) {
+    public SkillPanel(Skill skill) {
         this.skill = skill;
 
         setLayout(new GridLayout(1, 2, 5, 5));
 
 
-        canvas = new DrawingArea(skill);
+        DrawingArea canvas = new DrawingArea();
         canvas.setVisible(true);
         add(canvas);
 
 
     }
 
-    public void setCurrentSkillXp(int xp){
-        currentSkillXp = xp;
-    }
-
-    public int getCurrentSkillXp(){
-        return currentSkillXp;
-    }
-
-
-
-
     public class DrawingArea extends JPanel {
 
-        public DrawingArea(Skills skill) {
-
+        public DrawingArea() {
             setLayout(new GridLayout(1, 1, 0, 0));
             repaint();
         }
@@ -73,7 +57,7 @@ public class SkillPanel extends JPanel {
 
         private void drawLabel(int x, int y, Graphics2D g2d) {
             g2d.setFont(HELVETICA_14);
-            g2d.drawString(skill.name(), x, y);
+            g2d.drawString(skill.getDisplayName(), x, y);
         }
 
         private void drawLevel(int x, int y, Graphics2D g2d) {

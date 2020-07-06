@@ -3,8 +3,8 @@ package com.ross.game;
 public class InventoryItemViewModel {
 
 
-    private int amount;
-    private ItemId item;
+    private final int amount;
+    private final ItemId item;
 
     public InventoryItemViewModel(int amount, ItemId item) {
         this.amount = amount;

@@ -3,13 +3,13 @@ package com.ross.domain.player;
 import com.ross.domain.ExpTable;
 import com.ross.game.Inventory;
 import com.ross.game.ItemId;
-import com.ross.game.Skills;
+import com.ross.game.Skill;
 
 import java.util.HashMap;
 
 public class Player {
 
-    static HashMap<Skills,Integer> skillTable = new HashMap<>();
+    static HashMap<Skill,Integer> skillTable = new HashMap<>();
 
     private Inventory inventory;
 
@@ -17,20 +17,20 @@ public class Player {
     public Player() {
         this.inventory = Inventory.withStartingItems();
 
-        for (Skills skill: Skills.values()) {
+        for (Skill skill: Skill.values()) {
             skillTable.put(skill, 0);
         }
     }
 
-    public static int getLevel(Skills skill) {
+    public static int getLevel(Skill skill) {
         return ExpTable.lvlAt(skillTable.get(skill));
     }
 
-    public void addExp(int exp, Skills skill) {
+    public void addExp(int exp, Skill skill) {
         skillTable.put(skill, ((skillTable.get(skill))+ exp));
     }
 
-    public static double percentageToNextLvl(Skills skill) {
+    public static double percentageToNextLvl(Skill skill) {
 
         int currentLvl = ExpTable.lvlAt(skillTable.get(skill));
         int skillExp = skillTable.get(skill);

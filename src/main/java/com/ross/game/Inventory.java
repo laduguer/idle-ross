@@ -6,10 +6,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Inventory {
-    private List<GenericUpdateListener> listeners = new ArrayList<>();
 
-
-    private List<InventoryItem> items = new ArrayList<>();
+    private final List<GenericUpdateListener> listeners = new ArrayList<>();
+    private final List<InventoryItem> items = new ArrayList<>();
 
 
     public static Inventory withStartingItems() {
@@ -22,9 +21,9 @@ public class Inventory {
 
     public void addItems(ItemId item, int count) {
         Optional<InventoryItem> inventoryItem = find(item);
-        if(inventoryItem.isPresent()){
+        if (inventoryItem.isPresent()) {
             inventoryItem.get().plusAmount(count);
-        }else{
+        } else {
             items.add(new InventoryItem(count, item));
 
         }
@@ -40,7 +39,6 @@ public class Inventory {
         return items.stream()
                 .filter(ii -> ii.getItem() == item)
                 .findFirst();
-
     }
 
 
@@ -48,7 +46,5 @@ public class Inventory {
         return items.stream()
                 .map(item -> new InventoryItemViewModel(item.getAmount(), item.getItem()))
                 .collect(Collectors.toList());
-
-
     }
 }
