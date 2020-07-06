@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Scene extends JPanel {
 
-    private List<Skill> skills;
+    private List<SkillPanel> skillPanels;
 
     public Scene(Game game) {
         setLayout(new BorderLayout(2, 2));

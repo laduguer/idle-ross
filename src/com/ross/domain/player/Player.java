@@ -3,36 +3,43 @@ package com.ross.domain.player;
 import com.ross.domain.ExpTable;
 import com.ross.game.Inventory;
 import com.ross.game.ItemId;
+import com.ross.game.Skills;
+
+import java.util.HashMap;
 
 public class Player {
 
-    private static int wcExp = 0;
+    static HashMap<Skills,Integer> skillTable = new HashMap<>();
+
     private Inventory inventory;
 
 
     public Player() {
         this.inventory = Inventory.withStartingItems();
+
+        for (Skills skill: Skills.values()) {
+            skillTable.put(skill, 0);
+        }
     }
 
-    public static int woodcuttingLevel() {
-        return ExpTable.lvlAt(wcExp);
-
+    public static int getLevel(Skills skill) {
+        return ExpTable.lvlAt(skillTable.get(skill));
     }
 
-    public void addWoodcuttExp(int exp) {
-        wcExp += exp;
+    public void addExp(int exp, Skills skill) {
+        skillTable.put(skill, ((skillTable.get(skill))+ exp));
     }
 
-    public static double woodcuttPercentageToNextLvl() {
-        int currentLvl = ExpTable.lvlAt(wcExp);
+    public static double percentageToNextLvl(Skills skill) {
+
+        int currentLvl = ExpTable.lvlAt(skillTable.get(skill));
+        int skillExp = skillTable.get(skill);
         int startExpOfLvl = ExpTable.expAt(currentLvl);
         int startExpOfNextLvl = ExpTable.expAt(currentLvl+1);
 
         int diff = startExpOfNextLvl - startExpOfLvl;
-        int progress = wcExp - startExpOfLvl;
+        int progress = skillExp - startExpOfLvl;
         return ((double)progress) / (double)diff;
-
-
     }
 
     public void addItem(ItemId item) {
