@@ -19,9 +19,7 @@ public class InventoryPanel extends JScrollPane implements GenericUpdateListener
     public InventoryPanel(Inventory inventory) {
         this.inventory = inventory;
 
-       // setLayout(new ScrollPaneLayout());
-        //setLayout(new GridLayout(0, 8, 2, 2));
-        setPreferredSize(new Dimension(200, 200));
+        setPreferredSize(new Dimension(500, 200));
         inventory.addListener(this);
         setBackground(Color.GREEN);
 

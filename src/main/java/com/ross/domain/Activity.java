@@ -4,7 +4,8 @@ import com.ross.domain.player.Player;
 
 public interface Activity {
 
-    boolean playerHasRequirements(); //op hier een liijst van de requirements geven, die dan maar de player moeten als argument van een bool function binnennemen
+    boolean canStartActivity(Player player);
 
-    void applyProgress(Player player);
+    void onTick(Player player);
+
 }

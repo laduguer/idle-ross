@@ -53,8 +53,6 @@ public class InfoHolder {
                 .map(this::toViewModel)
                 .collect(Collectors.toList());
         return new InfoDisplayViewModel(messageMOdels);
-
-
     }
 
     private FadingInfoMessageViewModel toViewModel(InfoMessage message) {
@@ -68,7 +66,6 @@ public class InfoHolder {
     public void addListener(GenericUpdateListener listener) {
         listeners.add(listener);
     }
-
 
 
     private class InfoMessage {

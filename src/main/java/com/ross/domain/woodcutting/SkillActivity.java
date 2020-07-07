@@ -21,13 +21,13 @@ public class SkillActivity implements Activity {
     }
 
     @Override
-    public boolean playerHasRequirements() {
-        return Player.getLevel(currentSkill) >= levelRequired();
+    public boolean canStartActivity(Player player) {
+        return player.getLevel(currentSkill) >= levelRequired();
     }
 
 
     @Override
-    public void applyProgress(Player player) {
+    public void onTick(Player player) {
             player.addExp(expEach, currentSkill);
             if(itemId != null) {
                 player.addItem(itemId);

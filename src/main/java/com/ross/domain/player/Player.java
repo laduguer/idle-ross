@@ -1,9 +1,10 @@
 package com.ross.domain.player;
 
 import com.ross.domain.ExpTable;
-import com.ross.game.Inventory;
-import com.ross.game.ItemId;
-import com.ross.game.Skill;
+import com.ross.domain.quests.Quest;
+import com.ross.domain.quests.QuestHolder;
+import com.ross.game.*;
+import com.ross.ui.QuestProgressViewModel;
 
 import java.util.HashMap;
 
@@ -12,7 +13,7 @@ public class Player {
     static HashMap<Skill,Integer> skillTable = new HashMap<>();
 
     private Inventory inventory;
-
+    private QuestHolder questHolder;
 
     public Player() {
         this.inventory = Inventory.withStartingItems();
@@ -20,9 +21,10 @@ public class Player {
         for (Skill skill: Skill.values()) {
             skillTable.put(skill, 0);
         }
+        questHolder = new QuestHolder();
     }
 
-    public static int getLevel(Skill skill) {
+    public int getLevel(Skill skill) {
         return ExpTable.lvlAt(skillTable.get(skill));
     }
 
@@ -52,5 +54,17 @@ public class Player {
 
     public void addItem(ItemId item, int amount) {
         inventory.addItems(item, amount);
+    }
+
+    public boolean finishedQuest(Quest quest) {
+        return questHolder.isFinished(quest);
+    }
+
+    public void tickQuest(Quest quest) {
+        questHolder.tick(quest);
+    }
+
+    public void addQuestProgressListener(Quest quest, GenericValueUpdateListener<QuestProgressViewModel> listener) {
+        questHolder.addQuestProgressListener(quest, listener);
     }
 }

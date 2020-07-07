@@ -2,6 +2,9 @@ package com.ross.game;
 
 import com.ross.domain.Activity;
 import com.ross.domain.player.Player;
+import com.ross.domain.quests.Quest;
+import com.ross.ui.QuestPanel;
+import com.ross.ui.QuestProgressViewModel;
 
 public class Game {
 
@@ -23,16 +26,17 @@ public class Game {
     public void tick() {
         infoHolder.tick();
         if(currentActivity != null){
-            currentActivity.applyProgress(player);
+            currentActivity.onTick(player);
         }
     }
 
     public void setCurrentActivity(Activity activity) {
-        if(activity.playerHasRequirements()) {
+        if(activity.canStartActivity(player)) {
             currentActivity = activity;
+            //activity.onStart(player);
             infoHolder.addInfo("started activity");
         }else{
-            infoHolder.addWarning("pipo, uw level is ni hoog genoeg om da te doen");
+            infoHolder.addWarning("pipo, uw level is ni hoog genoeg om da te doen (refactor mij naar startValidationResult)");
         }
     }
 
@@ -42,5 +46,17 @@ public class Game {
 
     public Inventory inventory() {
         return player.inventory();
+    }
+
+    public Player player() {
+        return player;
+    }
+
+    public void activateQuestActivity(Quest quest) {
+        setCurrentActivity(QuestActivities.forQuest(quest));
+    }
+
+    public void setQuestProgressListener(Quest quest, GenericValueUpdateListener<QuestProgressViewModel> listener) {
+        player.addQuestProgressListener(quest, listener);
     }
 }
