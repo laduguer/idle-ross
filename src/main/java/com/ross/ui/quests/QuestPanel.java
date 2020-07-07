@@ -1,15 +1,11 @@
-package com.ross.ui;
+package com.ross.ui.quests;
 
 import com.ross.domain.quests.Quest;
 import com.ross.game.Game;
-import com.ross.game.GenericUpdateListener;
 import com.ross.game.GenericValueUpdateListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class QuestPanel extends JPanel implements GenericValueUpdateListener<QuestProgressViewModel> {
     private final Game game;

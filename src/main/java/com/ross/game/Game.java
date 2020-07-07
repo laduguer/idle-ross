@@ -3,8 +3,7 @@ package com.ross.game;
 import com.ross.domain.Activity;
 import com.ross.domain.player.Player;
 import com.ross.domain.quests.Quest;
-import com.ross.ui.QuestPanel;
-import com.ross.ui.QuestProgressViewModel;
+import com.ross.ui.quests.QuestProgressViewModel;
 
 public class Game {
 

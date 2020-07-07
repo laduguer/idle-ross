@@ -12,11 +12,14 @@ public class Inventory {
 
 
     public static Inventory withStartingItems() {
-        return new Inventory();
+        Inventory inventory = new Inventory();
+        inventory.addItems(ItemId.COINS, 100000);
+        return inventory;
     }
 
     public void addListener(GenericUpdateListener listener) {
         this.listeners.add(listener);
+        listener.updated();
     }
 
     public void addItems(ItemId item, int count) {
@@ -46,5 +49,12 @@ public class Inventory {
         return items.stream()
                 .map(item -> new InventoryItemViewModel(item.getAmount(), item.getItem()))
                 .collect(Collectors.toList());
+    }
+
+    public int availableGP() {
+        return items.stream()
+                .filter(item -> item.getItem() == ItemId.COINS)
+                .map(InventoryItem::getAmount)
+                .findFirst().orElse(0);
     }
 }

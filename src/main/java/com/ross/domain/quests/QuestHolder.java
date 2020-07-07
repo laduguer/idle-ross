@@ -1,7 +1,7 @@
 package com.ross.domain.quests;
 
 import com.ross.game.GenericValueUpdateListener;
-import com.ross.ui.QuestProgressViewModel;
+import com.ross.ui.quests.QuestProgressViewModel;
 
 import java.util.HashMap;
 import java.util.Map;

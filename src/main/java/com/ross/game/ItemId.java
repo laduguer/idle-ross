@@ -9,5 +9,6 @@ public enum ItemId {
     IRON_ORE,
     SHRIMPS,
     TROUT,
-    SALMON
+    SALMON,
+    COINS;
 }

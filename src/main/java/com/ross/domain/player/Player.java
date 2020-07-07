@@ -4,7 +4,7 @@ import com.ross.domain.ExpTable;
 import com.ross.domain.quests.Quest;
 import com.ross.domain.quests.QuestHolder;
 import com.ross.game.*;
-import com.ross.ui.QuestProgressViewModel;
+import com.ross.ui.quests.QuestProgressViewModel;
 
 import java.util.HashMap;
 
@@ -66,5 +66,9 @@ public class Player {
 
     public void addQuestProgressListener(Quest quest, GenericValueUpdateListener<QuestProgressViewModel> listener) {
         questHolder.addQuestProgressListener(quest, listener);
+    }
+
+    public int availableGP() {
+        return inventory.availableGP();
     }
 }
