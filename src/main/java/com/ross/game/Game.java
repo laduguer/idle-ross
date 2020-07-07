@@ -58,4 +58,8 @@ public class Game {
     public void setQuestProgressListener(Quest quest, GenericValueUpdateListener<QuestProgressViewModel> listener) {
         player.addQuestProgressListener(quest, listener);
     }
+
+    public void clearActivity() {
+        this.currentActivity = null;
+    }
 }

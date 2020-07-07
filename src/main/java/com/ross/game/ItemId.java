@@ -10,5 +10,9 @@ public enum ItemId {
     SHRIMPS,
     TROUT,
     SALMON,
-    COINS;
+    COINS,
+    FEATHER,
+    BONES,
+    COWHIDE,
+    COWMEAT;
 }

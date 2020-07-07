@@ -13,7 +13,7 @@ public class Inventory {
 
     public static Inventory withStartingItems() {
         Inventory inventory = new Inventory();
-        inventory.addItems(ItemId.COINS, 100000);
+        inventory.addItems(ItemId.COINS, 10000);
         return inventory;
     }
 

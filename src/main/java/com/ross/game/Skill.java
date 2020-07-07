@@ -4,11 +4,8 @@ public enum Skill {
     ATTACK,
     DEFENCE,
     STRENGTH,
-    RANGED,
-    PRAYER,
     MAGIC,
-    CONSTITUTION,
-    CRAFTING,
+    HITPOINTS,
     MINING,
     SMITHING,
     FISHING,
@@ -16,7 +13,6 @@ public enum Skill {
     FIREMAKING,
     WOODCUTTING,
     RUNECRAFTING,
-    DUNGEONEERING,
     FLETCHING;
 
     public String getDisplayName() {
