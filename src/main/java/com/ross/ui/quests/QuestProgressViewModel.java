@@ -1,4 +1,4 @@
-package com.ross.ui;
+package com.ross.ui.quests;
 
 import java.awt.*;
 

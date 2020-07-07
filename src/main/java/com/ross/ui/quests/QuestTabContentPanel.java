@@ -1,4 +1,4 @@
-package com.ross.ui;
+package com.ross.ui.quests;
 
 import com.ross.domain.quests.Quest;
 import com.ross.game.Game;

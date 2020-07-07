@@ -1,8 +1,7 @@
 package com.ross.domain.quests;
 
-import com.ross.game.GenericUpdateListener;
 import com.ross.game.GenericValueUpdateListener;
-import com.ross.ui.QuestProgressViewModel;
+import com.ross.ui.quests.QuestProgressViewModel;
 
 import java.awt.*;
 
